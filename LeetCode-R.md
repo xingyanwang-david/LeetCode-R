@@ -1,7 +1,7 @@
 LeetCode\_R
 ================
 Xingyan “David” Wang
-4/5/2021
+2021-04-09
 
 ## Introduction
 
@@ -1047,6 +1047,8 @@ divide(dividend = 1, divisor = 1 )
 
     ## [1] 1
 
+Finshed time: 4/8/2021
+
 ## Question 30: Substring with Concatenation of All Words
 
 Source: <https://leetcode.com/problems/substring-with-concatenation-of-all-words/>
@@ -1055,6 +1057,175 @@ You are given a string s and an array of strings words of the same length. Retur
 
 You can return the answer in any order.
 
-## Question 31:
+## Question 31: Next Permutation
+
+Source: <https://leetcode.com/problems/next-permutation/>
+
+Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
+
+If such an arrangement is not possible, it must rearrange it as the lowest possible order (i.e., sorted in ascending order).
+
+The replacement must be in place and use only constant extra memory.
+
+``` r
+nextPermutation<-function(nums){
+  if(length(nums)==0){
+    final<-NA
+  } else if (length(nums)==1){
+    final = nums
+  } else {
+    all_combination<-expand.grid(rep(list(1:length(nums)), length(nums)))
+    all_combination<-as.data.frame(all_combination)
+    
+    ix.keep<-rep(T, dim(all_combination)[1])
+    for(i in 1:dim(all_combination)[2]){
+      for(j in 1:dim(all_combination)[2]){
+        if (i==j){
+          ix.keep<-ix.keep
+        } else {
+          ix.mid<-all_combination[, i]!=all_combination[, j]
+          ix.keep<-ix.keep & ix.mid
+        }
+      }
+    }
+    
+    all_combination<-all_combination[ix.keep, ]
+    
+    value<-NULL
+    for(k in 1:dim(all_combination)[2]){
+      value<-cbind(value, nums[all_combination[, k]])
+    }
+    
+    value<-as.data.frame(value)
+    
+    value$value<-as.numeric(apply(value, 1, paste, collapse = ""))
+    value_sorted<-value[order(value$value), ]
+    
+    value_sorted<-unique(value_sorted)
+    
+    nums_value<-as.numeric(paste(nums, collapse = ""))
+    
+    if(nums_value==max(value_sorted$value)){
+      final<-value_sorted[1, ncol(value_sorted)]
+    } else {
+      ix.loc<-which(value_sorted$value==nums_value)
+      final<-value_sorted[ix.loc+1, ncol(value_sorted)]
+    }
+  }
+  return(final)
+}
+
+
+nextPermutation(nums = c(1,2,3))
+```
+
+    ## [1] 132
+
+``` r
+nextPermutation(nums = c(3,2,1))
+```
+
+    ## [1] 123
+
+``` r
+nextPermutation(nums = c(1,1,5))
+```
+
+    ## [1] 151
+
+``` r
+nextPermutation(nums = c(1))
+```
+
+    ## [1] 1
+
+Finshed time: 4/9/2021
 
 ## Question 32:
+
+## Question 33: Search in Rotated Sorted Array
+
+Source: <https://leetcode.com/problems/search-in-rotated-sorted-array/>
+
+There is an integer array nums sorted in ascending order (with distinct values).
+
+Prior to being passed to your function, nums is rotated at an unknown pivot index k (0 &lt;= k &lt; nums.length) such that the resulting array is \[nums\[k\], nums\[k+1\], ..., nums\[n-1\], nums\[0\], nums\[1\], ..., nums\[k-1\]\] (0-indexed). For example, \[0,1,2,4,5,6,7\] might be rotated at pivot index 3 and become \[4,5,6,7,0,1,2\].
+
+Given the array nums after the rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.
+
+``` r
+search<-function(nums, target){
+  if(sum(grepl(target, nums), na.rm=T)>0){
+    # minus one because the index should start from 0
+    final<-which(nums==target)-1
+  } else {
+    final<--1
+  }
+  return(final)
+}
+search(nums = c(4,5,6,7,0,1,2), target = 0)
+```
+
+    ## [1] 4
+
+``` r
+search(nums = c(4,5,6,7,0,1,2), target = 3)
+```
+
+    ## [1] -1
+
+``` r
+search(nums = c(1), target = 0)
+```
+
+    ## [1] -1
+
+Finshed time: 4/9/2021
+
+## Question 34: Find First and Last Position of Element in Sorted Array
+
+Source: &lt;&gt;
+
+Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.
+
+If target is not found in the array, return \[-1, -1\].
+
+Follow up: Could you write an algorithm with O(log n) runtime complexity?
+
+``` r
+searchRange<-function(nums, target){
+  if(sum(grepl(target, nums), na.rm=T)>0){
+    # minus one because the index should start from 0
+    final<-c(min(which(nums==target))-1, max(which(nums==target))-1)
+  } else {
+    final<-c(-1, -1)
+  }
+  return(final)
+}
+
+searchRange(nums = c(5,7,7,8,8,10), target = 8)
+```
+
+    ## [1] 3 4
+
+``` r
+searchRange(nums = c(5,7,7,8,8,10), target = 6)
+```
+
+    ## [1] -1 -1
+
+``` r
+searchRange(nums = c(), target = 0)
+```
+
+    ## [1] -1 -1
+
+Finshed time: 4/9/2021
+
+## Question 35: Search Insert Position
+
+Source: <https://leetcode.com/problems/search-insert-position/>
+
+Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+
+## Question 36:
