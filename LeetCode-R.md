@@ -649,7 +649,11 @@ threeSumClosest(nums = c(-1,2,1,-4), target = 1)
 
     ## [1] 2
 
-Finshed time: 3/29/2021 \#\# Question 17: Letter Combinations of a Phone Number Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
+Finshed time: 3/29/2021
+
+## Question 17: Letter Combinations of a Phone Number
+
+Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
 
 A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
 
@@ -878,6 +882,54 @@ Finshed time: 4/5/2021
 
 Given a linked list, swap every two adjacent nodes and return its head.
 
+``` r
+swapPairs<-function(head){
+  if(is.null(head) | length(head)==1){
+    final<-head
+  } else if(ceiling(length(head)/2)==length(head)/2){
+    final<-rep(NA, length(head))
+    odd_id<-seq(1, length(head), 2)
+    even_id<-seq(2, length(head), 2)
+    final[odd_id]<-head[even_id]
+    final[even_id]<-head[odd_id]
+  } else {
+    final<-rep(NA, length(head))
+    # the last elements will not swap
+    final[length(head)]<-head[length(head)]
+    new_head<-head[-length(head)]
+    odd_id<-seq(1, length(new_head), 2)
+    even_id<-seq(2, length(new_head), 2)
+    final[odd_id]<-new_head[even_id]
+    final[even_id]<-new_head[odd_id]
+  }
+  return(final)
+}
+
+swapPairs(head = c(1,2,3,4))
+```
+
+    ## [1] 2 1 4 3
+
+``` r
+swapPairs(head = c())
+```
+
+    ## NULL
+
+``` r
+swapPairs(head = c(1))
+```
+
+    ## [1] 1
+
+``` r
+swapPairs(head = c(1:5))
+```
+
+    ## [1] 2 1 4 3 5
+
+Finshed time: 4/8/2021
+
 ## Question 25: Reverse Nodes in k-Group
 
 Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
@@ -890,6 +942,52 @@ Could you solve the problem in O(1) extra memory space?
 
 You may not alter the values in the list's nodes, only nodes itself may be changed.
 
-## Question 26:
+## Question 26: Remove Duplicates from Sorted Array
+
+Given a sorted array nums, remove the duplicates in-place such that each element appears only once and returns the new length.
+
+Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+
+Clarification:
+
+Confused why the returned value is an integer but your answer is an array?
+
+Note that the input array is passed in by reference, which means a modification to the input array will be known to the caller as well.
+
+``` r
+removeDuplicates<-function(nums){
+  final<-nums[!duplicated(nums)]
+  return(list(length(final), final))
+}
+removeDuplicates(nums =c(1,1,2) )
+```
+
+    ## [[1]]
+    ## [1] 2
+    ## 
+    ## [[2]]
+    ## [1] 1 2
+
+``` r
+removeDuplicates(nums =c(0,0,1,1,1,2,2,3,3,4) )
+```
+
+    ## [[1]]
+    ## [1] 5
+    ## 
+    ## [[2]]
+    ## [1] 0 1 2 3 4
+
+Finshed time: 4/8/2021
 
 ## Question 27:
+
+## Question 28:
+
+## Question 29:
+
+## Question 30:
+
+## Question 31:
+
+## Question 32:
