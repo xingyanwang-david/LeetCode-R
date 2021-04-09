@@ -721,6 +721,7 @@ Finshed time: 4/8/2021
 
 ```
 ## Question 28: Implement strStr()
+
 Source: <https://leetcode.com/problems/implement-strstr/>
 
 Implement strStr().
@@ -736,11 +737,48 @@ For the purpose of this problem, we will return 0 when needle is an empty string
 ```{r Q28}
 
 ```
-## Question 29: 
-```{r Q29}
+## Question 29: Divide Two Integers
 
+Source: <https://leetcode.com/problems/divide-two-integers/>
+
+Given two integers dividend and divisor, divide two integers without using multiplication, division, and mod operator.
+
+Return the quotient after dividing dividend by divisor.
+
+The integer division should truncate toward zero, which means losing its fractional part. For example, truncate($8.345$) = $8$ and truncate($-2.7335$) = $-2$.
+
+Note: Assume we are dealing with an environment that could only store integers within the 32-bit signed integer range: $[−2^{31}, 2^{31} − 1]$. For this problem, assume that your function returns $2^{31} − 1$ when the division result overflows.
+
+```{r Q29}
+divide <- function(dividend, divisor){
+  if(divisor==0){
+    print("Divisor can not be 0!")
+    stop()
+  }
+  
+  number <- dividend/divisor
+  if(number >= 0){
+    final<-floor(number)
+  } else {
+    final<-ceiling(number)
+  }
+  return(final)
+}
+
+divide(dividend = 10, divisor = 3 )
+divide(dividend = 7, divisor = -3 )
+divide(dividend = 0, divisor = 1 )
+divide(dividend = 1, divisor = 1 )
 ```
-## Question 30: 
+
+## Question 30: Substring with Concatenation of All Words
+
+Source: <https://leetcode.com/problems/substring-with-concatenation-of-all-words/>
+
+You are given a string s and an array of strings words of the same length. Return all starting indices of substring(s) in s that is a concatenation of each word in words exactly once, in any order, and without any intervening characters.
+
+You can return the answer in any order.
+
 ```{r Q30}
 
 ```

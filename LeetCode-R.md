@@ -982,11 +982,78 @@ Finshed time: 4/8/2021
 
 ## Question 27:
 
-## Question 28:
+## Question 28: Implement strStr()
 
-## Question 29:
+Source: <https://leetcode.com/problems/implement-strstr/>
 
-## Question 30:
+Implement strStr().
+
+Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
+Clarification:
+
+What should we return when needle is an empty string? This is a great question to ask during an interview.
+
+For the purpose of this problem, we will return 0 when needle is an empty string. This is consistent to C's strstr() and Java's indexOf().
+
+## Question 29: Divide Two Integers
+
+Source: <https://leetcode.com/problems/divide-two-integers/>
+
+Given two integers dividend and divisor, divide two integers without using multiplication, division, and mod operator.
+
+Return the quotient after dividing dividend by divisor.
+
+The integer division should truncate toward zero, which means losing its fractional part. For example, truncate(8.345) = 8 and truncate(−2.7335) = −2.
+
+Note: Assume we are dealing with an environment that could only store integers within the 32-bit signed integer range: \[ − 2<sup>31</sup>, 2<sup>31</sup> − 1\]. For this problem, assume that your function returns 2<sup>31</sup> − 1 when the division result overflows.
+
+``` r
+divide <- function(dividend, divisor){
+  if(divisor==0){
+    print("Divisor can not be 0!")
+    stop()
+  }
+  
+  number <- dividend/divisor
+  if(number >= 0){
+    final<-floor(number)
+  } else {
+    final<-ceiling(number)
+  }
+  return(final)
+}
+
+divide(dividend = 10, divisor = 3 )
+```
+
+    ## [1] 3
+
+``` r
+divide(dividend = 7, divisor = -3 )
+```
+
+    ## [1] -2
+
+``` r
+divide(dividend = 0, divisor = 1 )
+```
+
+    ## [1] 0
+
+``` r
+divide(dividend = 1, divisor = 1 )
+```
+
+    ## [1] 1
+
+## Question 30: Substring with Concatenation of All Words
+
+Source: <https://leetcode.com/problems/substring-with-concatenation-of-all-words/>
+
+You are given a string s and an array of strings words of the same length. Return all starting indices of substring(s) in s that is a concatenation of each word in words exactly once, in any order, and without any intervening characters.
+
+You can return the answer in any order.
 
 ## Question 31:
 
